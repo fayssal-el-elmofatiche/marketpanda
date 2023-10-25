@@ -30,13 +30,15 @@ class MarketPanda:
         self.db_path = db_path
         print(f"MarketPanda init: {self.db_path=}")
 
-        self.conn = sqlite3.connect(self.db_path)
-
         # check if path exists
         if not os.path.exists(self.db_path):
             raise ValueError(f"Path {self.db_path} does not exist.")
         else:
             print(f"Path {self.db_path} exists.")
+
+        self.conn = sqlite3.connect(self.db_path)
+
+        
 
     # properties
     @property
