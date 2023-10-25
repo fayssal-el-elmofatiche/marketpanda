@@ -13,12 +13,14 @@ class MarketPanda:
     Class for defining different functions for data retrieval from sqlite database
     """
 
-    def __init__(self):
+    def __init__(self, db_path: str = None):
         """
         Initialize DataCounter object
         """
 
-        db_filename = "../data/market.db"
+        if db_path is None:
+            # throw exception that the online database is not yet implemented
+            raise NotImplementedError("Online database is not yet implemented. Please provide the path to a local database.")
 
         # Get the directory name of the current working directory
         current_dir = os.path.dirname(os.path.abspath(__file__))
