@@ -1,0 +1,16 @@
+# pycache files
+find . -name "__pycache__" -exec rm -rf {} \;
+
+# .DS_Store files
+find . -name ".DS_Store" -exec rm -rf {} \;
+
+# .pytest_cache files
+find . -name ".pytest_cache" -exec rm -rf {} \;
+
+# .coverage files
+find . -name ".coverage" -exec rm -rf {} \;
+
+# .env files
+find . -name ".env" -exec rm -rf {} \;
+
+
