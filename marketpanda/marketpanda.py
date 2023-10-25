@@ -15,7 +15,7 @@ class MarketPanda:
 
     def __init__(self, db_path: str = None):
         """
-        Initialize DataCounter object
+        Initialize MarketPanda object
         """
 
         if db_path is None:
@@ -23,12 +23,13 @@ class MarketPanda:
             raise NotImplementedError("Online database is not yet implemented. Please provide the path to a local database.")
 
         # Get the directory name of the current working directory
-        current_dir = os.path.dirname(os.path.abspath(__file__))
+        #current_dir = os.path.dirname(os.path.abspath(__file__))
 
         # Construct the path to the database
-        self.db_path = os.path.join(current_dir, db_filename)
+        #self.db_path = os.path.join(current_dir, db_path)
+        self.db_path = db_path
+        print(f"MarketPanda init: {self.db_path=}")
 
-        print(f"DataCounter init: {self.db_path=}")
         self.conn = sqlite3.connect(self.db_path)
 
         # check if path exists

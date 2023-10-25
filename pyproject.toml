@@ -1,12 +1,19 @@
 [tool.poetry]
 name = "marketpanda"
 version = "0.1.0"
-description = ""
+description = "MarketVault access library"
 authors = ["Fayssal El Mofatiche <fayssal.elmofatiche@dnbf.tech>"]
 readme = "README.md"
+license = "MIT"
+packages = [
+    { include = "marketpanda", from = "." },
+    { include = "marketpanda.*", from = "." },
+]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.11,<3.13"
+pandas = "^2.1.1"
+requests = "^2.31.0"
 
 
 [build-system]

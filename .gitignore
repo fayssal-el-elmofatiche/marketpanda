@@ -13,4 +13,7 @@ find . -name ".coverage" -exec rm -rf {} \;
 # .env files
 find . -name ".env" -exec rm -rf {} \;
 
+# .pytest_cache files
+find . -name ".pytest_cache" -exec rm -rf {} \;
+
 
