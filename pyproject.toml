@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "marketpanda"
-version = "0.1.0"
+version = "0.1.1"
 description = "MarketVault access library"
 authors = ["Fayssal El Mofatiche <fayssal.elmofatiche@dnbf.tech>"]
 readme = "README.md"
