@@ -6,7 +6,6 @@ import sqlite3
 import os
 from datetime import datetime
 import pandas as pd
-import cpi
 
 
 class MarketPanda:
