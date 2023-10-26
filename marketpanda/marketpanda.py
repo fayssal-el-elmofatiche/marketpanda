@@ -114,8 +114,14 @@ class MarketPanda:
         Retrieve all cpi data
         :return: list of cpi
         """
+        # Get the directory name of the database folder
+        data_dir = os.path.dirname(os.path.abspath(self.db_path))
+        print(f"data_dir: {data_dir}")
 
-        df = pd.read_csv("../data/cpi.csv")
+        # Construct the path to the cpi.csv file
+        cpi_path = os.path.join(data_dir, "cpi.csv")
+
+        df = pd.read_csv(cpi_path)
         return df
     
     
