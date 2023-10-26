@@ -17,4 +17,5 @@ __pycache__/
 # dist files
 dist/
 
-
+# .ipynb_checkpoints files
+.ipynb_checkpoints/

@@ -1,7 +1,7 @@
 # build_db_tables.py
 
 # Imports
-import psycopg2
+import sqlite3
 import os
 from dotenv import load_dotenv
 
@@ -122,29 +122,60 @@ def create_daily_price_table(connection, cursor):
     connection.commit()
 
 
+def create_cpi_table(connection):
+    """
+    Create the cpi table to store the relevant details of the cpi data
+    
+    Parameters
+    ----------
+    connection : 'sqlite3.connection'
+        The connection object to interact
+        with the database
+    """
+
+    cursor = connection.cursor()
+    cursor.execute("""
+CREATE TABLE cpi(
+    id INTEGER PRIMARY KEY NOT NULL,
+    date DATE NOT NULL,
+    year INT NOT NULL,
+    value NUMERIC NOT NULL,
+    series_id TEXT NOT NULL,
+    series_title TEXT NOT NULL,
+    series_survey TEXT NOT NULL,
+    series_seasonally_adjusted INTEGER NOT NULL,
+    series_periodicity_id TEXT NOT NULL,
+    series_periodicity_code TEXT NOT NULL,
+    series_periodicity_name TEXT NOT NULL,
+    series_area_id TEXT NOT NULL,
+    series_area_code TEXT NOT NULL,
+    series_area_name TEXT NOT NULL,
+    series_items_id TEXT NOT NULL,
+    series_items_code TEXT NOT NULL,
+    series_items_name TEXT NOT NULL,
+    period_id TEXT NOT NULL,
+    period_code TEXT NOT NULL,
+    period_name TEXT NOT NULL,
+    period_abbreviation TEXT NOT NULL,
+    period_month INT NOT NULL,
+    period_type TEXT NOT NULL);
+    """)
+    connection.commit()
+    cursor.close()
+    print("cpi table created successfully")
+
+
 if __name__ == "__main__":
-    # Connect to the remote database.
-    load_dotenv()
-    user = os.getenv('UW_SEC_MASTER_USER')
-    password = os.getenv('UW_SEC_MASTER_PASSWORD')
-    host = os.getenv('UW_SEC_MASTER_HOST')
-
-    conn = psycopg2.connect(
-        database='securities_master',
-        user=user,
-        password=password,
-        host=host,
-        port='5432'
-    )
-
+    conn = sqlite3.connect("../data/marketvault.db")
     cur = conn.cursor()
 
     # Build the tables in the remote database.
     table_creators = [
-        create_exchange_table,
-        create_data_vendor_table,
-        create_symbol_table,
-        create_daily_price_table
+        #create_exchange_table,
+        #create_data_vendor_table,
+        #create_symbol_table,
+        #create_daily_price_table,
+        create_cpi_table
     ]
 
     for creator in table_creators:
@@ -154,7 +185,6 @@ if __name__ == "__main__":
     cur.close()
     conn.close()
     print(
-        "The following tables have successfully been added "
-        "to the Securities Master database:\nexchange"
-        "\ndata_vendor\nsymbol\ndaily_price\n\nScript complete."
+        f"The following tables have successfully been added {table_creators}"
     )
+
