@@ -115,14 +115,8 @@ class MarketPanda:
         Retrieve all cpi data
         :return: list of cpi
         """
-        print("updating cpi data ... takes few seconds")
-        cpi.update()
-
-        # retrieve cpi data using cpi package
-        series = cpi.series.get()
-
-        # convert to dataframe
-        df = series.to_dataframe()
+        query = f"SELECT * FROM cpi;"
+        df = pd.read_sql(query, self.conn)
 
         return df
     
