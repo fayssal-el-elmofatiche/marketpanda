@@ -6,6 +6,7 @@ import sqlite3
 import os
 from datetime import datetime
 import pandas as pd
+import cpi
 
 
 class MarketPanda:
@@ -114,14 +115,15 @@ class MarketPanda:
         Retrieve all cpi data
         :return: list of cpi
         """
-        # Get the directory name of the database folder
-        data_dir = os.path.dirname(os.path.abspath(self.db_path))
-        print(f"data_dir: {data_dir}")
+        print("updating cpi data ... takes few seconds")
+        cpi.update()
 
-        # Construct the path to the cpi.csv file
-        cpi_path = os.path.join(data_dir, "cpi.csv")
+        # retrieve cpi data using cpi package
+        series = cpi.series.get()
 
-        df = pd.read_csv(cpi_path)
+        # convert to dataframe
+        df = series.to_dataframe()
+
         return df
     
     
