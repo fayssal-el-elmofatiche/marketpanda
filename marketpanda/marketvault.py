@@ -1,3 +1,4 @@
+from .utils import get_file_metadata
 import gdown
 
 def download_db():
@@ -10,4 +11,5 @@ def download_db():
 
     # create google drive downloader object
     gdown.download(url, output, quiet=False)
+    print(get_file_metadata(output))
     return output
