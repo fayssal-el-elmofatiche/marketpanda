@@ -1,4 +1,6 @@
 # Market Panda
+<img src="assets/marketpanda_logo_1.png" alt="Market Panda Logo" width="300" height="300"/>
+
 
 This project offers a interface marketvault, a database that serves a securities database for investment research and algorithmic trading. It can either work with an offline marketvault instance or the online service.
 
